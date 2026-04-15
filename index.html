@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>hwti人格测试</title>
+    <title>hwti</title>
     <!-- PDF.js 核心库 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
     <style>
@@ -464,41 +464,41 @@
 <body>
 
 <nav class="navbar">
-    <div class="logo">✦ hwti人格测试</div>
+    <div class="logo">✦ hwti</div>
     <div class="nav-links">
-        <a id="navGridTab">人格图鉴</a>
-        <a id="navDiscussTab">讨论区</a>
-        <a id="navDocsTab">资料库</a>
+        <a id="navGridTab">图鉴</a>
+        <a id="navDiscussTab">讨论</a>
+        <a id="navDocsTab">资料</a>
         <a href="#" target="_blank">关于</a>
     </div>
 </nav>
 
 <div class="app-container">
     <aside class="sidebar">
-        <h3>🧠 hwti</h3>
-        <p>十六型</p>
+        <h3>hwti</h3>
+        <p>48题 · 16型</p>
         <button id="startTestSidebarBtn" class="start-test-btn">✨ 开始测试</button>
         <div style="margin-top: 1.5rem;">
-            <div style="font-weight: 500;">📚 相关文献</div>
+            <div style="font-weight: 500;">📚 文献</div>
             <div class="doc-link" data-doc="sdhw1">时代厚外1</div>
             <div class="doc-link" data-doc="sdhw2">时代厚外2</div>
             <div class="doc-link" data-doc="winningcup">赢王杯</div>
         </div>
         <div style="margin-top: 1.5rem;">
-            <div style="font-weight: 500;">📋 测试须知</div>
+            <div style="font-weight: 500;">📋 须知</div>
             <ul style="margin-top: 0.6rem; font-size: 0.75rem; list-style: none; line-height: 1.5;">
-                <li>✓ 依据第一直觉选择</li>
-                <li>✓ 动态跳转，生成人格画像</li>
-                <li>✓ 讨论区可分享见解</li>
+                <li>✓ 凭直觉选择</li>
+                <li>✓ 动态跳转</li>
+                <li>✓ 可重测</li>
             </ul>
         </div>
     </aside>
 
     <main class="main-content">
         <div class="tabs">
-            <button class="tab-btn active" data-tab="grid">人格图鉴</button>
-            <button class="tab-btn" data-tab="discuss">社区·讨论区</button>
-            <button class="tab-btn" data-tab="docs">资料库</button>
+            <button class="tab-btn active" data-tab="grid">图鉴</button>
+            <button class="tab-btn" data-tab="discuss">讨论</button>
+            <button class="tab-btn" data-tab="docs">资料</button>
         </div>
 
         <!-- 人格网格 -->
@@ -507,7 +507,7 @@
         <!-- 讨论区面板 -->
         <div id="discussPanel" class="hidden discuss-container"></div>
 
-        <!-- 资料库面板：三个直接打开文档的卡片 -->
+        <!-- 资料库面板 -->
         <div id="docsPanel" class="hidden">
             <div class="docs-grid">
                 <div class="doc-card" data-doc="sdhw1">📘 时代厚外1</div>
@@ -524,8 +524,7 @@
 </div>
 
 <footer class="footer">
-    <div>© 2026 hwti人格测试 | 内在光谱 · 如实观照</div>
-    <div style="margin-top: 0.5rem;">📧 insight@hwti.com &nbsp;|&nbsp; 🌐 公众号: hwti心理志</div>
+    <div>© 2026 hwti</div>
 </footer>
 
 <!-- 内嵌PDF模态框 -->
@@ -634,9 +633,9 @@
             const div = document.createElement('div');
             div.className = 'persona-discuss';
             div.innerHTML = `
-                <div class="discuss-header"><span class="discuss-title">${persona.name}</span><span style="font-size:0.7rem;">💬 ${commentList.length}条评论</span></div>
-                <div class="comment-list" id="comment-list-${id}">${commentList.map(c => `<div class="comment-item">🧑 ${escapeHtml(c.text)}</div>`).join('') || '<div style="color:#aaa;">暂无评论，来说两句~</div>'}</div>
-                <div class="comment-input"><input type="text" placeholder="分享你的分析..." id="input-${id}"><button data-id="${id}">发表</button></div>
+                <div class="discuss-header"><span class="discuss-title">${persona.name}</span><span style="font-size:0.7rem;">💬 ${commentList.length}</span></div>
+                <div class="comment-list" id="comment-list-${id}">${commentList.map(c => `<div class="comment-item">🧑 ${escapeHtml(c.text)}</div>`).join('') || '<div style="color:#aaa;">暂无</div>'}</div>
+                <div class="comment-input"><input type="text" placeholder="说点什么..." id="input-${id}"><button data-id="${id}">发表</button></div>
             `;
             container.appendChild(div);
         }
@@ -674,7 +673,7 @@
     }
     function showResult(pk){ 
         const p=PERSONAS[pk]; 
-        testCardDiv.innerHTML=`<div class="result-box"><div style="font-size:3rem;">🔮</div><div class="result-name">${p.name}</div><div class="result-desc">${p.desc}</div><button class="reset-test" id="restartTest">🔄 重新测试</button><button class="reset-test" id="backToGrid">🏠 返回图鉴</button></div>`;
+        testCardDiv.innerHTML=`<div class="result-box"><div style="font-size:3rem;">🔮</div><div class="result-name">${p.name}</div><div class="result-desc">${p.desc}</div><button class="reset-test" id="restartTest">🔄 重测</button><button class="reset-test" id="backToGrid">🏠 返回</button></div>`;
         document.getElementById('restartTest')?.addEventListener('click',()=>startNewTest()); 
         document.getElementById('backToGrid')?.addEventListener('click',()=>exitTest()); 
     }
@@ -692,16 +691,15 @@
     const modal = document.getElementById('pdfModal');
     const modalTitle = document.getElementById('modalTitle');
     const pdfContainer = document.getElementById('pdfContainer');
-    let currentRendering = null;
 
     async function renderPDF(pdfUrl, title) {
         modalTitle.innerText = title;
-        pdfContainer.innerHTML = '<div class="pdf-loading">加载文档中，请稍候...</div>';
+        pdfContainer.innerHTML = '<div class="pdf-loading">加载中...</div>';
         modal.style.display = 'flex';
         try {
             const loadingTask = pdfjsLib.getDocument(pdfUrl);
             const pdf = await loadingTask.promise;
-            pdfContainer.innerHTML = ''; // 清空
+            pdfContainer.innerHTML = '';
             const numPages = pdf.numPages;
             for (let i = 1; i <= numPages; i++) {
                 const page = await pdf.getPage(i);
@@ -712,13 +710,8 @@
                 canvas.width = viewport.width;
                 canvas.style.maxWidth = '100%';
                 canvas.style.height = 'auto';
-                const renderContext = {
-                    canvasContext: context,
-                    viewport: viewport
-                };
-                await page.render(renderContext).promise;
+                await page.render({ canvasContext: context, viewport: viewport }).promise;
                 pdfContainer.appendChild(canvas);
-                // 添加简单分隔
                 if (i < numPages) {
                     const hr = document.createElement('hr');
                     hr.style.margin = '0.5rem 0';
@@ -728,7 +721,7 @@
             }
         } catch (err) {
             console.error(err);
-            pdfContainer.innerHTML = `<div class="pdf-loading">文档加载失败: ${err.message}<br>请确认文件“${title}”存在于网站根目录。</div>`;
+            pdfContainer.innerHTML = `<div class="pdf-loading">加载失败: ${err.message}<br>请确认文件存在。</div>`;
         }
     }
 
@@ -737,25 +730,13 @@
         pdfContainer.innerHTML = '';
     }
 
-    // 打开文档（内嵌）
     function openDocument(docId) {
-        let url = '';
-        let title = '';
-        if (docId === 'sdhw1') {
-            url = 'sdhw1.pdf';
-            title = '时代厚外1';
-        } else if (docId === 'sdhw2') {
-            url = 'sdhw2.pdf';
-            title = '时代厚外2';
-        } else if (docId === 'winningcup') {
-            url = '赢王杯.pdf';
-            title = '赢王杯';
-        }
-        if (url) {
-            renderPDF(url, title);
-        } else {
-            alert('文档标识错误');
-        }
+        let url = '', title = '';
+        if (docId === 'sdhw1') { url = 'sdhw1.pdf'; title = '时代厚外1'; }
+        else if (docId === 'sdhw2') { url = 'sdhw2.pdf'; title = '时代厚外2'; }
+        else if (docId === 'winningcup') { url = '赢王杯.pdf'; title = '赢王杯'; }
+        if (url) renderPDF(url, title);
+        else alert('文档标识错误');
     }
 
     // 选项卡切换
@@ -773,14 +754,10 @@
     document.getElementById('navDiscussTab').addEventListener('click',()=>{ document.querySelector('.tab-btn[data-tab="discuss"]').click(); });
     document.getElementById('navDocsTab').addEventListener('click',()=>{ document.querySelector('.tab-btn[data-tab="docs"]').click(); });
 
-    // 绑定所有文档打开事件（侧边栏 + 资料库卡片）
+    // 绑定文档打开事件
     document.querySelectorAll('.doc-link, .doc-card').forEach(el => {
-        el.addEventListener('click', (e) => {
-            const doc = el.dataset.doc;
-            if (doc) openDocument(doc);
-        });
+        el.addEventListener('click', (e) => { const doc = el.dataset.doc; if (doc) openDocument(doc); });
     });
-    // 关闭模态框
     document.querySelector('.close-modal').addEventListener('click', closeModal);
     window.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 

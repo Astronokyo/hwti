@@ -218,67 +218,41 @@
             overflow: hidden;
         }
 
-        .discuss-container {
-            max-height: 70vh;
-            overflow-y: auto;
-            padding-right: 0.5rem;
-        }
-        .persona-discuss {
+        /* 箴言卡片样式 */
+        .quote-container {
             background: rgba(255,255,255,0.6);
             backdrop-filter: blur(12px);
             border-radius: 1.5rem;
-            padding: 1rem;
-            margin-bottom: 1.2rem;
-            border: 0.5px solid rgba(255,255,255,0.6);
+            padding: 1.8rem;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
         }
-        .discuss-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
-            padding-bottom: 0.4rem;
-            margin-bottom: 0.6rem;
+        .quote-text {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            color: #1c1c1e;
+            margin-bottom: 1rem;
+            font-style: italic;
         }
-        .discuss-title {
-            font-weight: 600;
-            font-size: 1rem;
-        }
-        .comment-list {
-            margin: 0.5rem 0;
-            max-height: 180px;
-            overflow-y: auto;
+        .quote-source {
             font-size: 0.8rem;
-            background: rgba(255,255,240,0.3);
-            border-radius: 1rem;
-            padding: 0.5rem;
-        }
-        .comment-item {
-            padding: 0.3rem 0;
-            border-bottom: 0.5px solid rgba(0,0,0,0.05);
-        }
-        .comment-input {
-            display: flex;
-            gap: 0.5rem;
+            color: #6c6c70;
             margin-top: 0.5rem;
         }
-        .comment-input input {
-            flex: 1;
-            padding: 0.4rem 0.8rem;
-            border-radius: 2rem;
-            border: 0.5px solid rgba(0,0,0,0.1);
-            background: rgba(255,255,255,0.7);
-            font-size: 0.75rem;
-        }
-        .comment-input button {
-            background: #1c1c1e;
+        .refresh-quote {
+            background: rgba(28,28,30,0.8);
             color: white;
             border: none;
+            padding: 0.4rem 1.2rem;
             border-radius: 2rem;
-            padding: 0.2rem 0.8rem;
-            font-size: 0.7rem;
+            font-size: 0.8rem;
             cursor: pointer;
+            margin-top: 1rem;
         }
-        .comment-input button:active { transform: scale(0.96);}
+        .refresh-quote:active {
+            transform: scale(0.96);
+        }
 
         .test-card {
             background: rgba(255, 255, 255, 0.75);
@@ -467,7 +441,7 @@
     <div class="logo">✦ hwti</div>
     <div class="nav-links">
         <a id="navGridTab">图鉴</a>
-        <a id="navDiscussTab">讨论</a>
+        <a id="navQuoteTab">拾句</a>
         <a id="navDocsTab">资料</a>
         <a href="#" target="_blank">关于</a>
     </div>
@@ -497,15 +471,21 @@
     <main class="main-content">
         <div class="tabs">
             <button class="tab-btn active" data-tab="grid">图鉴</button>
-            <button class="tab-btn" data-tab="discuss">讨论</button>
+            <button class="tab-btn" data-tab="quote">拾句</button>
             <button class="tab-btn" data-tab="docs">资料</button>
         </div>
 
         <!-- 人格网格 -->
         <div id="personaGridContainer" class="cards-grid"></div>
 
-        <!-- 讨论区面板 -->
-        <div id="discussPanel" class="hidden discuss-container"></div>
+        <!-- 箴言面板 -->
+        <div id="quotePanel" class="hidden">
+            <div class="quote-container" id="quoteBox">
+                <div class="quote-text" id="quoteText">✨ 点击刷新，摘取一句厚外妙语</div>
+                <div class="quote-source" id="quoteSource">—— 摘自《时代厚外》</div>
+                <button class="refresh-quote" id="refreshQuoteBtn">换一句</button>
+            </div>
+        </div>
 
         <!-- 资料库面板 -->
         <div id="docsPanel" class="hidden">
@@ -557,7 +537,7 @@
         P9: { name: "双面型人格 (LJL)", desc: "你欺软怕硬，妄想在可悲的人面前尽显掌控欲，可在遇到强势的时候却容易软弱退缩，在感情上常常处于劣势，大概率难以获得爱情的美满，表面看起来有些许威严，善于变通，可实际若被旁人觉察到你的另一面，也可能变成只是一个众人眼中滑稽的小丑。" },
         P10: { name: "励志型人格 (CP)", desc: "你有着坚定的人生理想，对自己的未来有着清晰的规划，志向远大，且愿意为之努力，为了达到自己的目标和实现自己的梦想你愿意不懈奋斗，在自己的事业上有着取之不尽用之不竭的动力与激情。" },
         P11: { name: "势利型人格 (DCB)", desc: "你重视利益，善于把握时机，积极地争取有利自己的东西，如果与自身利益相冲突，你会毫不犹豫地放弃该事件或远离该人物，对利益的追求使得你脾气有些暴躁，不愿在你不在乎的事件上浪费时间，希望一切都可以在最符合你利益的范围内运行。" },
-        P12: { name: "霸道型人格 (LIM/LLB)", desc: "你敢作敢为，霸道横行，勇于表现自己，会努力引导大家的思想向自己看齐，有些许反社会意识，率真直言他人过错，也有时欺压弱小，弱肉强食。" },
+        P12: { name: "霸道型人格 (LJM/LLB)", desc: "你敢作敢为，霸道横行，勇于表现自己，会努力引导大家的思想向自己看齐，有些许反社会意识，率真直言他人过错，也有时欺压弱小，弱肉强食。" },
         P13: { name: "自律型人格 (HXM)", desc: "你对自己要求极高，甚至到了严苛的地步，这种自律让你在你坚持的领域出类拔萃，但这种严苛也被你不自觉地带入了对身边人的要求，有些蔑视不自律的人，并希翼他们向自己看齐。" },
         P14: { name: "无辜型人格 (HWH)", desc: "你看起来无辜可怜，容易激起周边人的保护欲，也正因此你善于借此来把自己的责任推脱给他人，也由于你无辜的样子，周围人就算对你有些意见也大概率只会藏在心里，是在凶残的现世中不可多得的如同羊羔般的存在。" },
         P15: { name: "表演型人格 (CMS)", desc: "你擅长在别人面前展示自我，使人看到你威严的一面，营造你使人战栗的形象。你擅长在别人面前展示自我，使人看到你标新立异，总是想方设法地为自己的生活增添色彩，比如你的发色。即使你善于塑造人设，但也要谨防过度自信沉溺。" },
@@ -621,39 +601,37 @@
     }
     const fullMap = buildQuestionsMap();
 
-    // 讨论区评论存储
-    let comments = JSON.parse(localStorage.getItem('hwti_comments')) || {};
-    function saveComments() { localStorage.setItem('hwti_comments', JSON.stringify(comments)); }
+    // ---------- 摘句库（来自 PDF 原文）----------
+    const quoteBank = [
+        { text: "沧海横流，方显英雄本色。", source: "《时代厚外2·陈光星》" },
+        { text: "世界笑靥相迎，我将报之以歌；世界以痛吻我，我将横眉冷对。", source: "《时代厚外2·陈光星》" },
+        { text: "南国风光，千里烟飘，万里知道。", source: "《时代厚外2·陈从猛》" },
+        { text: "孩纸，就是孩纸。", source: "《时代厚外2·陈从猛》" },
+        { text: "这是老师的一片心意。", source: "《时代厚外2·陈从猛》" },
+        { text: "不要在那里咯咯咯咯咯咯！再不读我就开你的嘴来读！", source: "《时代厚外2·陈从猛》" },
+        { text: "抬腕！压拍！击球！", source: "《时代厚外2·江群枫》" },
+        { text: "大江流日夜，群枫歌未央。", source: "《时代厚外2·江群枫》" },
+        { text: "以奋斗为笔，书青春华章。", source: "《时代厚外2·徐大智》" },
+        { text: "水能载舟，亦能覆舟。", source: "《时代厚外2·徐大智》" },
+        { text: "张开慈善的双翅，飞往苦难的人间。", source: "《时代厚外1·张宗瀚》" },
+        { text: "只要思想不滑坡，办法总比困难多。", source: "《时代厚外1·张宗瀚》" },
+        { text: "张，就是斩钉截铁；宗，便是纵横天地；瀚，即是酣畅淋漓！", source: "《时代厚外1》" },
+        { text: "扎实的基础是成功的关键。", source: "《时代厚外1·孙松华》" },
+        { text: "蛋白石会吸收能量然后把它送回源头。", source: "《赢王杯·蛋白石测定》" },
+        { text: "一头大鼋叼走了联合国主席私人飞机的螺旋桨。", source: "《赢王杯·一代赢王》" },
+        { text: "我跳下飞机，用双腿在空中狂踏，双手托着飞机。", source: "《赢王杯·一代赢王》" },
+        { text: "逆着水流向上，游走百走，又顺流而下走了九里。", source: "《赢王杯·一代赢王》" }
+    ];
 
-    function renderDiscuss() {
-        const container = document.getElementById('discussPanel');
-        container.innerHTML = '';
-        for(let [id, persona] of Object.entries(PERSONAS)) {
-            const commentList = comments[id] || [];
-            const div = document.createElement('div');
-            div.className = 'persona-discuss';
-            div.innerHTML = `
-                <div class="discuss-header"><span class="discuss-title">${persona.name}</span><span style="font-size:0.7rem;">💬 ${commentList.length}</span></div>
-                <div class="comment-list" id="comment-list-${id}">${commentList.map(c => `<div class="comment-item">🧑 ${escapeHtml(c.text)}</div>`).join('') || '<div style="color:#aaa;">暂无</div>'}</div>
-                <div class="comment-input"><input type="text" placeholder="说点什么..." id="input-${id}"><button data-id="${id}">发表</button></div>
-            `;
-            container.appendChild(div);
-        }
-        document.querySelectorAll('.comment-input button').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const pid = btn.dataset.id;
-                const input = document.getElementById(`input-${pid}`);
-                const text = input.value.trim();
-                if(text) {
-                    if(!comments[pid]) comments[pid] = [];
-                    comments[pid].push({ text, time: Date.now() });
-                    saveComments();
-                    renderDiscuss();
-                }
-            });
-        });
+    function getRandomQuote() {
+        return quoteBank[Math.floor(Math.random() * quoteBank.length)];
     }
-    function escapeHtml(str) { return str.replace(/[&<>]/g, function(m){if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
+
+    function updateQuote() {
+        const quote = getRandomQuote();
+        document.getElementById('quoteText').innerHTML = `“${quote.text}”`;
+        document.getElementById('quoteSource').innerHTML = `—— ${quote.source}`;
+    }
 
     // 人格网格
     function renderPersonaGrid() {
@@ -741,18 +719,21 @@
 
     // 选项卡切换
     const gridDiv = document.getElementById('personaGridContainer');
-    const discussDiv = document.getElementById('discussPanel');
+    const quoteDiv = document.getElementById('quotePanel');
     const docsDiv = document.getElementById('docsPanel');
     function showTab(tab){
-        gridDiv.classList.add('hidden'); discussDiv.classList.add('hidden'); docsDiv.classList.add('hidden');
+        gridDiv.classList.add('hidden'); quoteDiv.classList.add('hidden'); docsDiv.classList.add('hidden');
         if(tab==='grid') gridDiv.classList.remove('hidden');
-        else if(tab==='discuss') { discussDiv.classList.remove('hidden'); renderDiscuss(); }
+        else if(tab==='quote') { quoteDiv.classList.remove('hidden'); updateQuote(); }
         else if(tab==='docs') docsDiv.classList.remove('hidden');
     }
     document.querySelectorAll('.tab-btn').forEach(btn=>{ btn.addEventListener('click',()=>{ document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); showTab(btn.dataset.tab); }); });
     document.getElementById('navGridTab').addEventListener('click',()=>{ document.querySelector('.tab-btn[data-tab="grid"]').click(); });
-    document.getElementById('navDiscussTab').addEventListener('click',()=>{ document.querySelector('.tab-btn[data-tab="discuss"]').click(); });
+    document.getElementById('navQuoteTab').addEventListener('click',()=>{ document.querySelector('.tab-btn[data-tab="quote"]').click(); });
     document.getElementById('navDocsTab').addEventListener('click',()=>{ document.querySelector('.tab-btn[data-tab="docs"]').click(); });
+
+    // 刷新箴言按钮
+    document.getElementById('refreshQuoteBtn')?.addEventListener('click', updateQuote);
 
     // 绑定文档打开事件
     document.querySelectorAll('.doc-link, .doc-card').forEach(el => {
